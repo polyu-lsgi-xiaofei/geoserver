@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 
 public class OWSHandlerMapping extends SimpleUrlHandlerMapping {
-
-
 	@Override
 	protected Object lookupHandler(String urlPath, HttpServletRequest request)
 			throws Exception {

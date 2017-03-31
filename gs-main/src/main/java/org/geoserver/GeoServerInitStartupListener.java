@@ -16,7 +16,7 @@ public class GeoServerInitStartupListener implements ServletContextListener {
 	 * anything else starts up
 	 */
 
-	private static final Logger LOGGER = Logging.getLogger("org.geospe.logging");
+	private static final Logger LOGGER = Logging.getLogger("org.geoserver.logging");
 
 	boolean relinquishLoggingControl;
 
