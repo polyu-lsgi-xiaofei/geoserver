@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- Spring will reference the instance of the HelloWorld class by the id 
+		name "wmtsService" -->
+	<bean id="testServiceTarget" class="org.geoserver.DefaultTestService" />
+
+	<bean id="debugInterceptor" class="org.springframework.aop.interceptor.DebugInterceptor">
+	</bean>
+
+	<bean id="testService" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>org.geoserver.TestService</value>
+		</property>
+		<property name="target" ref="testServiceTarget" />
+		<property name="interceptorNames">
+			<list>
+				<value>debugInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Service Descriptor(s) -->
+	<bean id="testService-1.0.0" class="org.geoserver.platform.Service">
+		<constructor-arg index="0" value="test" />
+		<constructor-arg index="1" ref="testService" />
+		<constructor-arg index="2" value="1.0.0" />
+		<constructor-arg index="3">
+			<list>
+				<value>GetCapabilities</value>
+				<value>test</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+
+</beans>
